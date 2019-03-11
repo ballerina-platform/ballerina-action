@@ -1,1 +1,1 @@
-# github-actions
+# Ballerina GitHub Actions
