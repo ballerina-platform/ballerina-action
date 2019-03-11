@@ -6,12 +6,12 @@ The GitHub Action for [Ballerina CLI](https://ballerina.io/) wraps the `ballerin
 
 ```
 action "Ballerina Build" {
-  uses = "ballerina-platform/github-actions/cli@master"
+  uses = "ballerina-platform/github-actions/cli/latest@master"
   args = "build"
 }
 
 action "Ballerina Push" {
-  uses = "ballerina-platform/github-actions/cli@master"
+  uses = "ballerina-platform/github-actions/cli/latest@master"
   env = {
     BALLERINA_CENTRAL_ACCESS_TOKEN = "Ballerina Central Access Token"
   }

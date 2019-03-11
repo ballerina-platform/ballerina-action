@@ -1,6 +1,6 @@
 FROM ballerina/ballerina:latest
 
-LABEL version="1.0.0"
+LABEL version="latest"
 
 LABEL maintainer="WSO2 Inc."
 
