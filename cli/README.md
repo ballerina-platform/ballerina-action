@@ -22,6 +22,6 @@ action "Ballerina Push" {
 
 ### Environment variables
 
-- `BALLERINA_CENTRAL_ACCESS_TOKEN` – Required only for the "push" action, representing the Ballerina Central access token
+- `BALLERINA_CENTRAL_ACCESS_TOKEN` – Required only for the "push" action to represent the Ballerina Central access token.
 
 
