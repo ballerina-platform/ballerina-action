@@ -16,6 +16,8 @@ LABEL "repository"="https://github.com/ballerina-platform/github-actions"
 
 LABEL "homepage"="https://ballerina.io/"
 
+ADD patch/ballerina-packerina-0.990.3.jar /ballerina/runtime/bre/lib/ballerina-packerina-0.990.3.jar
+
 ADD entrypoint.sh /entrypoint.sh
 
 USER root
