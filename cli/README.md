@@ -1,6 +1,6 @@
 # GitHub Action for the Ballerina CLI
 
-The GitHub Action for [Ballerina CLI](https://ballerina.io/) wraps the `ballerina` command inside of an Action.
+The GitHub Action for the [Ballerina CLI](https://ballerina.io/) wraps the `ballerina` command inside an Action.
 
 ## Usage
 
