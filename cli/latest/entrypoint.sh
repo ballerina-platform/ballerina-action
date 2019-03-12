@@ -2,7 +2,7 @@
 
 echo "XXXXXX"
 echo $DOCKER_HOST
-export DOCKER_HOST='tcp://docker:2375'
+export DOCKER_HOST='tcp://127.0.0.1:2375'
 /ballerina/runtime/bin/ballerina $*
 echo $DOCKER_HOST
 cat ballerina-internal.log
