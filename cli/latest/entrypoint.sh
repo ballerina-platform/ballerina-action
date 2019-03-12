@@ -1,7 +1,7 @@
 #!/bin/sh -l
 
 echo "XXXXXX"
-echo $DOCKER_HOST
+env
 export DOCKER_HOST='tcp://127.0.0.1:2375'
 /ballerina/runtime/bin/ballerina $*
 echo $DOCKER_HOST
