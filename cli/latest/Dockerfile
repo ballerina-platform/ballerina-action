@@ -1,3 +1,4 @@
+FROM docker:stable
 FROM ballerina/ballerina:latest
 
 LABEL version="latest"
@@ -15,6 +16,8 @@ LABEL "com.github.actions.color"="blue"
 LABEL "repository"="https://github.com/ballerina-platform/github-actions"
 
 LABEL "homepage"="https://ballerina.io/"
+
+CMD echo $DOCKER_HOST
 
 ADD patch/ballerina-packerina-0.990.3.jar /ballerina/runtime/bre/lib/ballerina-packerina-0.990.3.jar
 
