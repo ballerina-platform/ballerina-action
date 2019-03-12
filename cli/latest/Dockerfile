@@ -1,5 +1,5 @@
-FROM docker:stable
 FROM ballerina/ballerina:latest
+FROM docker:stable
 
 LABEL version="latest"
 
