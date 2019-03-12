@@ -1,4 +1,4 @@
-FROM ballerina/ballerina:0.990.4-SNAPSHOT
+FROM ballerina/ballerina:latest
 
 LABEL version="latest"
 
