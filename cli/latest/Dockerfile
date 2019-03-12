@@ -18,6 +18,10 @@ LABEL "homepage"="https://ballerina.io/"
 
 ADD patch/ballerina-packerina-0.990.3.jar /ballerina/runtime/bre/lib/ballerina-packerina-0.990.3.jar
 
+ADD kubernetes-extension-0.990.3.jar /ballerina/runtime/bre/lib/kubernetes-extension-0.990.3.jar
+
+ADD docker-extension-0.990.3.jar /ballerina/runtime/bre/lib/docker-extension-0.990.3.jar
+
 ADD entrypoint.sh /entrypoint.sh
 
 USER root
