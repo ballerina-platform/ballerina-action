@@ -1,11 +1,6 @@
 #!/bin/sh -l
 
+echo $DOCKER_HOST
 echo "XXXXXX"
 env
-export DOCKER_HOST='tcp://127.0.0.1:2375'
-/ballerina/runtime/bin/ballerina $*
-echo $DOCKER_HOST
-cat ballerina-internal.log
-ls /tmp -la
-touch /tmp/x.txt
-ls /tmp -la
+docker pull hello-world
