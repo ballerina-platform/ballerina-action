@@ -1,5 +1,6 @@
 FROM java:8
-WORKDIR /
-ADD app.jar app.jar
-ADD dk dk
-CMD java -jar app.jar
+ADD app.jar /app.jar
+ADD dk /dk
+ADD entrypoint.sh /entrypoint.sh
+
+ENTRYPOINT ["/entrypoint.sh"]
