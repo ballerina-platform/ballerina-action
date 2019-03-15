@@ -1,3 +1,3 @@
 #!/bin/sh -l
 
-$BALLERINA_HOME/bin/ballerina build
+$BALLERINA_HOME/bin/ballerina $*
