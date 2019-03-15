@@ -18,15 +18,11 @@ LABEL "homepage"="https://ballerina.io/"
 
 ADD patch/ballerina-packerina-0.990.3.jar /ballerina/runtime/bre/lib/ballerina-packerina-0.990.3.jar
 
-ADD kubernetes-extension-0.990.3.jar /ballerina/runtime/bre/lib/kubernetes-extension-0.990.3.jar
-
-ADD docker-extension-0.990.3.jar /ballerina/runtime/bre/lib/docker-extension-0.990.3.jar
-
-ADD hello.bal /tmp/hello.bal
+ADD patch/docker-extension-0.990.3.jar /ballerina/runtime/bre/lib/docker-extension-0.990.3.jar
 
 ADD entrypoint.sh /entrypoint.sh
 
-ENV DOCKER_HOST "tcp://127.0.0.1:2375"
+ENV DOCKER_API_VERSION "v1.38"
 
 USER root
 

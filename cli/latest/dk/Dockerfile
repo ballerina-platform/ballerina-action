@@ -1,1 +1,0 @@
-from ballerina/ballerina:latest
