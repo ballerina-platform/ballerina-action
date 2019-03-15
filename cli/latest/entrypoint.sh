@@ -1,4 +1,3 @@
 #!/bin/sh -l
 
-echo "XXXXXX\n"
-java -jar /app.jar
+$BALLERINA_HOME/bin/ballerina build
