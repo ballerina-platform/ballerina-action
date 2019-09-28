@@ -5,18 +5,32 @@ The GitHub Action for the [Ballerina CLI](https://ballerina.io/) wraps the `ball
 ## Usage
 
 ```
-action "Ballerina Build" {
-  uses = "ballerina-platform/github-actions/cli/latest@master"
-  args = "build"
-}
+name: Ballerina example
 
-action "Ballerina Push" {
-  uses = "ballerina-platform/github-actions/cli/latest@master"
-  env = {
-    BALLERINA_CENTRAL_ACCESS_TOKEN = "Ballerina Central Access Token"
-  }
-  args = "push"
-}
+on: [push]
+
+jobs:
+  build:
+    
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+    
+      - name: Ballerina Build
+        uses: ballerina-platform/github-actions/cli/latest@master
+        with:
+          args: 
+            build
+
+      - name: Ballerina Push
+        uses: ballerina-platform/github-actions/cli/latest@master
+        with:
+          env: 
+            BALLERINA_CENTRAL_ACCESS_TOKEN = ${{ secrets.BallerinaToken }}
+          args: 
+            push 
 
 ```
 
