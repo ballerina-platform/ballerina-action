@@ -1,0 +1,12 @@
+
+name: Ballerina Action
+author: WSO2 Inc.
+description: An action to run "ballerina" CLI commands. 
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+branding:
+  icon: 'bold'
+  color: 'green'
+
+
