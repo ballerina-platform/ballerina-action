@@ -19,13 +19,13 @@ jobs:
         uses: actions/checkout@v1
     
       - name: Ballerina Build
-        uses: ballerina-platform/github-actions/cli/latest@master
+        uses: ballerina-platform/ballerina-action@master
         with:
           args: 
             build
 
       - name: Ballerina Push
-        uses: ballerina-platform/github-actions/cli/latest@master
+        uses: ballerina-platform/ballerina-action@master
         with:
           env: 
             BALLERINA_CENTRAL_ACCESS_TOKEN = ${{ secrets.BallerinaToken }}
