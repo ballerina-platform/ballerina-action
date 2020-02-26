@@ -37,5 +37,5 @@ jobs:
 ### Environment variables
 
 - `BALLERINA_CENTRAL_ACCESS_TOKEN` – Required only for the "push" action to represent the Ballerina Central access token.
-
+- `WORKING_DIR` – Required only if we need to change the current working directory of the repository to another relative path. 
 
