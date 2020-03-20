@@ -1,4 +1,4 @@
-FROM ballerina/ballerina:1.1.4
+FROM ballerina/ballerina:1.2.0
 
 ADD entrypoint.sh /entrypoint.sh
 
