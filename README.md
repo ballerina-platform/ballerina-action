@@ -22,14 +22,14 @@ jobs:
         uses: ballerina-platform/ballerina-action@master
         with:
           args: 
-            build
+            build -c
 
-      - name: Ballerina Push
-        uses: ballerina-platform/ballerina-action@master
-        with:
-          env: 
-            BALLERINA_CENTRAL_ACCESS_TOKEN = ${{ secrets.BallerinaToken }}
-          args: 
+      - name: Ballerina Push 
+        uses: ballerina-platform/ballerina-action@master 
+        env:  
+          BALLERINA_CENTRAL_ACCESS_TOKEN: ${{ secrets.BALLERINATOKEN }} 
+        with: 
+          args:  
             push 
 
 ```
