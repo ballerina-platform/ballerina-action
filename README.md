@@ -22,7 +22,7 @@ jobs:
         uses: ballerina-platform/ballerina-action@master
         with:
           args: 
-            build -c
+            build
 
       - name: Ballerina Push 
         uses: ballerina-platform/ballerina-action@master 
