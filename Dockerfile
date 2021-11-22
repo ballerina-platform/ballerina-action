@@ -1,4 +1,4 @@
-FROM ballerina/ballerina:swan-lake-beta3
+FROM ballerina/ballerina:swan-lake-beta4
 
 ADD entrypoint.sh /entrypoint.sh
 
