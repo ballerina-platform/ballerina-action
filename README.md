@@ -30,7 +30,7 @@ jobs:
           args: 
             push 
         env: 
-            BALLERINA_CENTRAL_ACCESS_TOKEN = ${{ secrets.BallerinaToken }}
+            BALLERINA_CENTRAL_ACCESS_TOKEN: ${{ secrets.BallerinaToken }}
 
 ```
 
