@@ -1,4 +1,4 @@
-FROM ballerina/ballerina:2201.7.0
+FROM ballerina/ballerina:2201.7.1
 
 ADD entrypoint.sh /entrypoint.sh
 
