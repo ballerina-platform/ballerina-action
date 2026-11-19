@@ -1,0 +1,98 @@
+name: Validate Action
+
+on:
+  pull_request:
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  image:
+    name: Build image and verify Ballerina version
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Read Ballerina version from Dockerfile
+        id: dockerfile
+        run: |
+          tag=$(sed -nE 's|^FROM[[:space:]]+ballerina/ballerina:([^[:space:]]+).*|\1|p' Dockerfile | head -n 1)
+          if [ -z "$tag" ]; then
+            echo "::error file=Dockerfile::Could not find 'FROM ballerina/ballerina:<tag>' in Dockerfile"
+            exit 1
+          fi
+          echo "Dockerfile uses ballerina/ballerina:$tag"
+          echo "tag=$tag" >> "$GITHUB_OUTPUT"
+
+      # Fails if the ballerina/ballerina:<tag> image has not been published yet.
+      - name: Build action image
+        run: docker build -t ballerina-action:test .
+
+      - name: Verify bal version matches the Dockerfile tag
+        env:
+          EXPECTED: ${{ steps.dockerfile.outputs.tag }}
+        run: |
+          out=$(docker run --rm ballerina-action:test version 2>&1)
+          echo "$out"
+          actual=$(printf '%s\n' "$out" | awk '$1 == "Ballerina" { print $2; exit }')
+          if ! printf '%s' "$EXPECTED" | grep -qE '^[0-9]+\.[0-9]+\.[0-9]+$'; then
+            echo "::notice::Tag '$EXPECTED' is not a release version; skipping the exact version match (got '$actual')."
+            [ -n "$actual" ] || { echo "::error::'bal version' did not report a Ballerina version"; exit 1; }
+            exit 0
+          fi
+          if [ "$actual" != "$EXPECTED" ]; then
+            echo "::error file=Dockerfile::Expected Ballerina $EXPECTED but 'bal version' reported '$actual'"
+            exit 1
+          fi
+          echo "Ballerina version $actual matches the Dockerfile tag."
+
+      - name: Verify WORKING_DIR and bal run
+        run: |
+          out=$(docker run --rm -v "$PWD:/work" -w /work -e WORKING_DIR=test/sample ballerina-action:test run 2>&1)
+          echo "$out"
+          if ! printf '%s\n' "$out" | grep -qxF 'Hello, Ballerina!'; then
+            echo "::error::'bal run' in test/sample did not print the expected output"
+            exit 1
+          fi
+
+  action:
+    name: Run the action (uses ./)
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: bal version
+        uses: ./
+        with:
+          args: version
+
+      - name: bal build
+        uses: ./
+        with:
+          args: build
+        env:
+          WORKING_DIR: test/sample
+
+      - name: bal test
+        uses: ./
+        with:
+          args: test
+        env:
+          WORKING_DIR: test/sample
+
+      - name: Verify build output
+        run: |
+          if [ ! -f test/sample/target/bin/sample.jar ]; then
+            echo "::error::Expected test/sample/target/bin/sample.jar after 'bal build'"
+            ls -R test/sample/target || true
+            exit 1
+          fi
+          echo "Found test/sample/target/bin/sample.jar"
